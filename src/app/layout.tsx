@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import BrandBar from '@/components/BrandBar';
@@ -225,7 +226,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@type': 'Organization',
     name: 'The Ideal Professional Inc.',
     url: siteUrl,
-    logo: `${siteUrl}/android-chrome-512x512.png`,
+    // point to the app icon (make sure public/icon.png exists)
+    logo: `${siteUrl}/icon.png`,
     sameAs: [],
     description: 'Empowering People, Businesses, and Governments for a Digital Future.',
   };
@@ -315,11 +317,18 @@ function SiteHeader() {
       {/* BAR: replaced border with layered chroma hairline + glow */}
       <div className="bg-white/70 backdrop-blur-md dark:bg-black/60">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-          {/* Brand */}
-          <Link href="/" className="group flex items-center gap-2 font-extrabold tracking-tight" aria-label="Home">
-            <span className="inline-grid h-8 w-8 place-items-center rounded-md bg-black text-white transition-transform group-hover:-rotate-3">
-              Ti
-            </span>
+          {/* Brand - using real icon.png */}
+          <Link href="/" className="group flex items-center gap-3 font-extrabold tracking-tight" aria-label="Home">
+            <div className="relative h-8 w-8">
+              <Image
+                src="/icon.png"
+                alt="The Ideal Professional"
+                fill
+                sizes="32px"
+                style={{ objectFit: 'contain' }}
+                priority
+              />
+            </div>
             <span className="hidden sm:inline">The Ideal Professional</span>
             <span className="sm:hidden">TIP</span>
           </Link>
@@ -435,7 +444,9 @@ function SiteFooter() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2 font-extrabold">
-              <span className="inline-grid h-8 w-8 place-items-center rounded-md bg-black text-white">Ti</span>
+              <div className="relative h-8 w-8">
+                <Image src="/icon.png" alt="The Ideal Professional" fill sizes="32px" style={{ objectFit: 'contain' }} />
+              </div>
               <span>The Ideal Professional Inc.</span>
             </div>
             <p className="mt-3 text-sm text-[hsl(var(--ink-dim))]">

@@ -652,8 +652,8 @@ function Solutions() {
       <div className="mx-auto max-w-7xl px-4 py-16">
         <SectionHeader
           kicker="Our Integrated Ecosystem"
-          title="Tools that excel alone—unbeatable together"
-          blurb="Run one product—or compose a stack. Shared data (with consent) makes each step smarter and faster."
+          title="Tools that excel alone — unbeatable together"
+          blurb="Run one product — or compose a stack. Shared data (with consent) makes each step smarter and faster."
           center
           size="2xl"
         />
@@ -774,7 +774,7 @@ function HowItWorks() {
       <div className="mx-auto max-w-7xl px-4 py-16">
         <SectionHeader
           kicker="How It Works"
-          title="From idea to impact—on one runway"
+          title="From idea to impact — on one runway"
           blurb="Shorten time-to-value with clear paths, credible proof, and measurable outcomes."
           center
           size="2xl"
