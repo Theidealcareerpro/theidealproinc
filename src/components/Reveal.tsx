@@ -26,6 +26,7 @@ export default function Reveal({
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -37,6 +38,7 @@ export default function Reveal({
       },
       { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
     );
+
     io.observe(el);
     return () => io.disconnect();
   }, [once]);
@@ -45,7 +47,7 @@ export default function Reveal({
 
   return (
     <Tag
-      ref={ref as any}
+      ref={ref as React.Ref<HTMLElement>}
       style={{
         transition: 'opacity 500ms cubic-bezier(.22,1,.36,1), transform 500ms cubic-bezier(.22,1,.36,1)',
         transitionDelay: shouldShow ? `${delay}ms` : '0ms',

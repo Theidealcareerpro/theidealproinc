@@ -40,7 +40,7 @@ const ITEMS: Item[] = [
   { label: 'Contact', href: '/contact', icon: Mail },
 ];
 
-/* Glass surface for the bar (no hard border) */
+/* Glass surface for the bar */
 const glassSurface: React.CSSProperties = {
   background: 'linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.68))',
   WebkitBackdropFilter: 'blur(10px) saturate(140%)',
@@ -49,14 +49,15 @@ const glassSurface: React.CSSProperties = {
     '0 22px 60px -36px rgba(16,24,40,.28), 0 16px 36px -24px rgba(16,24,40,.16), inset 0 1px 0 rgba(255,255,255,.38)',
 };
 
-/* Pill — compact, single-row friendly */
+/* Pill — interactive button */
 function Pill({ item, active = false }: { item: Item; active?: boolean }) {
   const reduced = useReducedMotion();
-  const ref = useRef<HTMLAnchorElement>(null);
+  const aRef = useRef<HTMLAnchorElement>(null);
+  const linkRef = useRef<HTMLAnchorElement>(null);
 
   function onMove(e: ReactMouseEvent) {
     if (reduced) return;
-    const el = ref.current;
+    const el = aRef.current ?? linkRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
@@ -65,8 +66,9 @@ function Pill({ item, active = false }: { item: Item; active?: boolean }) {
     const ry = (px * 4).toFixed(2);
     el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
   }
+
   function onLeave() {
-    const el = ref.current;
+    const el = aRef.current ?? linkRef.current;
     if (!el) return;
     el.style.transform = 'rotateX(0deg) rotateY(0deg)';
   }
@@ -102,7 +104,6 @@ function Pill({ item, active = false }: { item: Item; active?: boolean }) {
         transform: 'translateZ(14px)',
       }}
     >
-      {/* blue rimlight */}
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-md"
@@ -112,14 +113,12 @@ function Pill({ item, active = false }: { item: Item; active?: boolean }) {
           opacity: 0.65,
         }}
       />
-      {/* icon (visible blue) */}
       <Icon className="h-3.5 w-3.5" style={{ color: BLUE }} strokeWidth={2.2} />
-      {/* external marker */}
-      {item.external ? (
+      {item.external && (
         <span className="absolute -right-1 -top-1 rounded-full bg-white p-[1px] shadow" title="Opens in new tab">
           <ExternalLink className="h-[9px] w-[9px]" style={{ color: BLUE }} strokeWidth={2} />
         </span>
-      ) : null}
+      )}
     </span>
   );
 
@@ -127,7 +126,6 @@ function Pill({ item, active = false }: { item: Item; active?: boolean }) {
     <>
       {IconChip}
       <span className="text-[hsl(var(--ink))] whitespace-nowrap">{item.label}</span>
-      {/* subtle sheen */}
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-xl"
@@ -139,28 +137,40 @@ function Pill({ item, active = false }: { item: Item; active?: boolean }) {
     </>
   );
 
-  const sharedProps = {
-    ref: ref as any,
-    onMouseMove: onMove,
-    onMouseLeave: onLeave,
-    className: base,
-    style: activeRing ? { ...styleCard, ...activeRing } : styleCard,
-    'aria-label': item.label + (item.external ? ' (opens in new tab)' : ''),
-  } as const;
+  if (item.external) {
+    return (
+      <a
+        ref={aRef}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={base}
+        style={activeRing ? { ...styleCard, ...activeRing } : styleCard}
+        aria-label={item.label + ' (opens in new tab)'}
+      >
+        {content}
+      </a>
+    );
+  }
 
-  return item.external ? (
-    <a {...sharedProps} href={item.href} target="_blank" rel="noopener noreferrer">
-      {content}
-    </a>
-  ) : (
-    <Link {...sharedProps} href={item.href}>
+  return (
+    <Link
+      ref={linkRef}
+      href={item.href}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className={base}
+      style={activeRing ? { ...styleCard, ...activeRing } : styleCard}
+      aria-label={item.label}
+    >
       {content}
     </Link>
   );
 }
 
 export default function BrandBar() {
-  // Compute active path AFTER hydration to avoid SSR/client mismatch
   const [path, setPath] = useState('');
   useEffect(() => {
     setPath(window.location.pathname || '');
@@ -169,13 +179,7 @@ export default function BrandBar() {
   return (
     <div className="sticky top-16 z-40 w-full" style={glassSurface}>
       <div className="mx-auto max-w-7xl px-0">
-        {/* SINGLE ROW: no-wrap + horizontal scroll on small, contained on large */}
-        <nav
-          aria-label="Brand quick navigation"
-          className="
-            relative h-12"
-        >
-          {/* edge-to-edge scroll area without shifting layout */}
+        <nav aria-label="Brand quick navigation" className="relative h-12">
           <div className="-mx-4 px-4 flex items-center gap-1.5 h-12">
             {ITEMS.map((it, idx) => {
               const isActive = !!path && !it.external && it.href !== '/' && path.startsWith(it.href);
@@ -195,7 +199,6 @@ export default function BrandBar() {
         </nav>
       </div>
 
-      {/* soft chroma hairline instead of hard border */}
       <div aria-hidden className="h-px w-full">
         <div
           className="h-[1px] w-full"
