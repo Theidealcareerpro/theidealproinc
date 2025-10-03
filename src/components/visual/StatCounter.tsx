@@ -18,7 +18,6 @@ export default function StatCounter({ to, label }: StatCounterProps) {
       (entries) => {
         if (!entries[0].isIntersecting) return;
 
-        let start = 0;
         const target = to;
         const t0 = performance.now();
         const dur = 1200;
