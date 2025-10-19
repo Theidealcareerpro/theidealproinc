@@ -468,7 +468,7 @@ function SiteFooter() {
             <ul className="mt-2 space-y-1 text-sm text-[hsl(var(--ink-dim))]">
               <li>
                 <a
-                  href="https://grokpro.vercel.app/"
+                  href="https://www.theidealprofessional.online/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-black dark:hover:text-white"
@@ -489,7 +489,7 @@ function SiteFooter() {
               <li><Link href="/donate" className="hover:text-black dark:hover:text-white">Donate</Link></li>
               <li><Link href="/ecosystem" className="hover:text-black dark:hover:text-white">Explore ecosystem</Link></li>
               <li><Link href="/contact" className="hover:text-black dark:hover:text-white">Request a quote</Link></li>
-              <li><Link href="/about" className="hover:text-black dark:hover:text-white">About Us</Link></li>
+              
             </ul>
           </div>
         </div>

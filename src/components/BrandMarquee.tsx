@@ -1,8 +1,8 @@
 // src/components/BrandMarquee.tsx
 export default function BrandMarquee() {
   const brands: Array<{ name: string; href: string; ext?: boolean; tag: string }> = [
-    { name: 'theidealprogen', href: 'https://grokpro.vercel.app/', ext: true, tag: 'CVs · CLs · Portfolios' },
-    { name: 'theidealprocoach', href: '/coach', tag: 'Mentorship' },
+    { name: 'theidealprogen', href: 'https://app.theidealprofessional.online/', ext: true, tag: 'CVs · CLs · Portfolios' },
+    { name: 'theidealprocareers', href: '/coach', tag: 'Mentorship' },
     { name: 'theidealprolearn', href: '/learn', tag: 'Courses' },
     { name: 'theidealprokids', href: '/kids', tag: 'Digital Fluency' },
     { name: 'theidealprobiz', href: '/biz', tag: 'SME Digitization' },

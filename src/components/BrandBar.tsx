@@ -30,8 +30,8 @@ const BLUE = 'hsl(222 86% 52%)';
 
 const ITEMS: Item[] = [
   { label: 'Ecosystem', href: '/ecosystem', icon: FolderGit2 },
-  { label: 'theidealprogen', href: 'https://grokpro.vercel.app/', external: true, icon: Briefcase },
-  { label: 'theidealprocoach', href: '/coach', icon: Lightbulb },
+  { label: 'theidealprogen', href: 'https://app.theidealprofessional.online/', external: true, icon: Briefcase },
+  { label: 'theidealprocareers', href: '/coach', icon: Lightbulb },
   { label: 'theidealprolearn', href: '/learn', icon: BookOpen },
   { label: 'theidealprokids', href: '/kids', icon: Award },
   { label: 'theidealprobiz', href: '/biz', icon: TrendingUp },

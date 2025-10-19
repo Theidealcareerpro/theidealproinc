@@ -20,7 +20,7 @@ const data: CaseStudy[] = [
   },
   {
     kpi: '2–6 week sprints',
-    title: 'ProCoach — time-to-offer',
+    title: 'ProCareers — time-to-offer',
     problem: 'Portfolio lacked narrative & signal.',
     action: 'Mentor-led sprints: case studies, mock interviews, outreach scripts.',
     outcome: 'Interviews booked + offer confidence up.',

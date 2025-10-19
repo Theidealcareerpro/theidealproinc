@@ -2,8 +2,8 @@
 import Reveal from '@/components/Reveal';
 
 const ITEMS = [
-  { title: 'theidealprogen', desc: 'CVs, cover letters, and portfolios', href: 'https://grokpro.vercel.app/', external: true },
-  { title: 'theidealprocoach', desc: 'Mentorship & career acceleration', href: '/coach' },
+  { title: 'theidealprogen', desc: 'CVs, cover letters, and portfolios', href: 'https://app.theidealprofessional.online/', external: true },
+  { title: 'theidealprocareers', desc: 'Mentorship & career acceleration', href: '/coach' },
   { title: 'theidealprolearn', desc: 'Skills, free courses & certificates', href: '/learn' },
   { title: 'theidealprokids', desc: 'Youth learning & digital fluency', href: '/kids' },
   { title: 'theidealprobiz', desc: 'SME digitization & consulting', href: '/biz' },

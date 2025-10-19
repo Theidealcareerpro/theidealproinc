@@ -31,7 +31,7 @@ const COURSES = [
     blurb: 'Money basics, budgeting, saving, and simple financial decision-making that young people can use today.',
     outcomes: ['Budget a pocket money plan', 'Understand needs vs wants', 'Save toward a goal'],
     pdf: '/downloads/kids-financial-literacy.pdf', // replace with actual PDF path
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_financial', // replace with actual playlist
+    playlist: 'https://www.youtube.com/@theidealprokids', // replace with actual playlist
   },
   {
     id: 'practical-life-skills',
@@ -39,7 +39,7 @@ const COURSES = [
     blurb: 'Everyday independence: cooking basics, time management, health & hygiene, and resourcefulness.',
     outcomes: ['Follow a simple recipe', 'Manage a morning routine', 'Use household tools safely'],
     pdf: '/downloads/kids-practical-life-skills.pdf',
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_practical',
+    playlist: 'https://www.youtube.com/@theidealprokids',
   },
   {
     id: 'emotional-social-intelligence',
@@ -47,7 +47,7 @@ const COURSES = [
     blurb: 'Recognise feelings, practise empathy, solve conflicts, and build healthy friendships.',
     outcomes: ['Name emotions & regulate them', 'Practice active listening', 'Resolve small conflicts peacefully'],
     pdf: '/downloads/kids-emotional-intelligence.pdf',
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_esi',
+    playlist: 'https://www.youtube.com/@theidealprokids',
   },
   {
     id: 'digital-media-literacy',
@@ -55,7 +55,7 @@ const COURSES = [
     blurb: 'Safe, critical, and creative use of digital tools — from evaluating sources to making simple media.',
     outcomes: ['Spot clickbait', 'Create a short audio or image story', 'Practice safe sharing online'],
     pdf: '/downloads/kids-digital-media-literacy.pdf',
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_digital',
+    playlist: 'https://www.youtube.com/@theidealprokids',
   },
   {
     id: 'critical-thinking',
@@ -63,7 +63,7 @@ const COURSES = [
     blurb: 'Ask better questions, weigh options, and make choices using simple frameworks.',
     outcomes: ['Use pros & cons for decisions', 'Spot faulty reasoning', 'Try a tiny experiment to test ideas'],
     pdf: '/downloads/kids-critical-thinking.pdf',
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_critical',
+    playlist: 'https://www.youtube.com/@theidealprokids',
   },
   {
     id: 'career-professional',
@@ -71,7 +71,7 @@ const COURSES = [
     blurb: 'Experience work-related skills: teamwork, goal-setting, basic interviews and presenting yourself confidently.',
     outcomes: ['Set a short-term learning goal', 'Practice a 60s introduction', 'Work in a small team task'],
     pdf: '/downloads/kids-career-professional.pdf',
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_career',
+    playlist: 'https://www.youtube.com/@theidealprokids',
   },
   {
     id: 'legal-civic',
@@ -79,7 +79,7 @@ const COURSES = [
     blurb: 'Understand rights & responsibilities in age-appropriate ways and how to take part in the community.',
     outcomes: ['Know basic rights at school', 'Understand civic helpers', 'Participate in a community mini-project'],
     pdf: '/downloads/kids-legal-civic.pdf',
-    playlist: 'https://www.youtube.com/playlist?list=PLkids_civic',
+    playlist: 'https://www.youtube.com/@theidealprokids',
   },
 ];
 
@@ -276,9 +276,9 @@ export default function KidsPage() {
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
           {[
-            ['Read & Tell', 'https://www.youtube.com/playlist?list=PLkids01', 'Phonics, sight words, and story retell games.'],
-            ['Everyday Math', 'https://www.youtube.com/playlist?list=PLkids02', 'Puzzles, patterns, and kitchen-table experiments.'],
-            ['Create & Code', 'https://www.youtube.com/playlist?list=PLkids03', 'Creative prompts and block coding mini-projects.'],
+            ['Read & Tell', 'https://www.youtube.com/@theidealprokids', 'Phonics, sight words, and story retell games.'],
+            ['Everyday Math', 'https://www.youtube.com/@theidealprokids', 'Puzzles, patterns, and kitchen-table experiments.'],
+            ['Create & Code', 'https://www.youtube.com/@theidealprokids', 'Creative prompts and block coding mini-projects.'],
           ].map(([title, href, blurb]) => (
             <article key={title as string} className="flex flex-col gap-3">
               <div className="relative overflow-hidden rounded-xl border bg-white shadow-card aspect-video">
