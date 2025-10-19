@@ -245,7 +245,7 @@ export default function LearnPage() {
             <p className="section-title">Keep it moving</p>
             <h2 className="text-2xl font-extrabold tracking-tight">Stuck or want faster progress?</h2>
             <p className="max-w-2xl text-[hsl(var(--ink-dim))]">
-              theidealprocoach can pair you with a mentor for a 2–6 week sprint. We start where the leverage is highest.
+              theidealprocareers can pair you with a mentor for a 2–6 week sprint. We start where the leverage is highest.
             </p>
             <div className="mt-2 flex flex-wrap justify-center gap-3">
               <a href="/coach" className="btn btn-secondary">Mentorship</a>

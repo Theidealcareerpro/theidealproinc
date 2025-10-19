@@ -51,7 +51,7 @@ const brands: Brand[] = [
   },
   {
     slug: 'coach',
-    title: 'theidealprocoach',
+    title: 'theidealprocareers',
     blurb: 'Hybrid mentorship (AI + human) for faster career lift.',
     href: '/coach',
     Icon: IconCoach,
@@ -279,7 +279,7 @@ export default function EcosystemPage() {
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Reveal y={16}>
               <div>
-                <p className="section-title">The Ideal Professional Inc.</p>
+                <p className="section-title">The Ideal Professional.</p>
                 <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
                   The <span className="text-[hsl(var(--primary))]">“theideal”</span> Ecosystem
                 </h1>
@@ -430,7 +430,7 @@ export default function EcosystemPage() {
             {
               title: 'Individuals',
               desc: 'Stand out and land offers faster.',
-              points: ['ProGen: ATS CV + portfolio', 'ProLearn: skills & certificates', 'ProCoach: sprints + interviews'],
+              points: ['ProGen: ATS CV + portfolio', 'ProLearn: skills & certificates', 'Procareers: sprints + interviews'],
               cta: ['/ecosystem#progen', 'Explore'],
             },
             {
@@ -483,7 +483,7 @@ export default function EcosystemPage() {
             {
               title: 'Career Accelerator',
               pitch: 'Brand, proof, interviews—done right.',
-              items: ['ProGen + ProCoach', 'ProLearn add-on', 'Portfolio templates'],
+              items: ['ProGen + Procareers', 'ProLearn add-on', 'Portfolio templates'],
               href: '/ecosystem#progen',
               cta: 'Start career bundle',
             },
@@ -542,7 +542,7 @@ export default function EcosystemPage() {
               <li><strong>ProKids</strong> → digital fluency & early STEM</li>
               <li><strong>ProLearn</strong> → upskill & certify</li>
               <li><strong>ProGen</strong> → brand & job outcomes</li>
-              <li><strong>ProCoach</strong> → mentorship & acceleration</li>
+              <li><strong>Procareers</strong> → mentorship & acceleration</li>
               <li><strong>ProBiz / ProGov</strong> → modern orgs & services</li>
             </ol>
             <div className="mt-4 text-xs">

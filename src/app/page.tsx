@@ -494,7 +494,7 @@ function Hero() {
           <div className="lg:col-span-5">
             <div className="grid grid-cols-2 gap-5">
               <IconTile Icon={IconCV} label="ProGen" sub="AI CVs & personal brand" href="/ecosystem#progen" hue={hues.primary} />
-              <IconTile Icon={IconMentor} label="ProCoach" sub="Mentorship & acceleration" href="/coach" hue={hues.amber} />
+              <IconTile Icon={IconMentor} label="Procareers" sub="Mentorship & acceleration" href="/coach" hue={hues.amber} />
             </div>
             <div className="mt-5 grid grid-cols-2 gap-5">
               <IconTile Icon={IconLearn} label="ProLearn" sub="Courses & certifications" href="/learn" hue={hues.teal} />
@@ -605,7 +605,7 @@ function Solutions() {
       bullets: ['ATS-optimized CVs', 'Portfolio templates', 'LinkedIn enhancer'],
     },
     {
-      label: 'The Ideal ProCoach',
+      label: 'The Ideal Procareers',
       sub: 'Hybrid mentorship: AI + human experts',
       Icon: IconMentor,
       href: '/coach',

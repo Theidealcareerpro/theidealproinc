@@ -306,6 +306,7 @@ function SiteHeader() {
     { label: 'Ecosystem', href: '/ecosystem' },
     { label: 'Donate', href: '/donate' },
     { label: 'Contact', href: '/contact' },
+    { label: 'About Us', href: '/about' },
   ];
 
   return (
@@ -475,7 +476,7 @@ function SiteFooter() {
                   theidealprogen
                 </a>
               </li>
-              <li><Link href="/coach" className="hover:text-black dark:hover:text-white">theidealprocoach</Link></li>
+              <li><Link href="/coach" className="hover:text-black dark:hover:text-white">theidealprocareers</Link></li>
               <li><Link href="/learn" className="hover:text-black dark:hover:text-white">theidealprolearn</Link></li>
               <li><Link href="/kids" className="hover:text-black dark:hover:text-white">theidealprokids</Link></li>
               <li><Link href="/biz" className="hover:text-black dark:hover:text-white">theidealprobiz</Link></li>
@@ -488,6 +489,7 @@ function SiteFooter() {
               <li><Link href="/donate" className="hover:text-black dark:hover:text-white">Donate</Link></li>
               <li><Link href="/ecosystem" className="hover:text-black dark:hover:text-white">Explore ecosystem</Link></li>
               <li><Link href="/contact" className="hover:text-black dark:hover:text-white">Request a quote</Link></li>
+              <li><Link href="/about" className="hover:text-black dark:hover:text-white">About Us</Link></li>
             </ul>
           </div>
         </div>
