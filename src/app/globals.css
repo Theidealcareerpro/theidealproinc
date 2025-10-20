@@ -1,15 +1,15 @@
 /* src/app/globals.css */
 
 /* ────────────────────────────────────────────────────────────
-   Tailwind v4 Core
+   Tailwind Core
    ──────────────────────────────────────────────────────────── */
 @import "tailwindcss";
 
 /* ────────────────────────────────────────────────────────────
-   Design Tokens (Tailwind v4 @theme)
+   Design Tokens (Stable format)
    Muted, executive palette; dark-mode tokens included.
    ──────────────────────────────────────────────────────────── */
-@theme {
+:root {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter,
                "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 
@@ -37,6 +37,9 @@
   --muted: var(--color-muted);
   --primary: var(--color-primary);
 
+  --overlay-light: 0.8;
+  --overlay-dark: 0.7;
+
   /* Spotlight coords (updated by layout script) */
   --mx: 50%;
   --my: 50%;
@@ -46,12 +49,22 @@
 }
 
 /* Dark mode tokens (class-based) */
+/* :root.dark {
+  --surface: 0 0% 6%;
+  --ink: 0 0% 100%;
+  --ink-dim: 220 10% 70%;
+  --muted: 220 10% 12%;
+  --primary: 222 70% 60%;
+  --overlay-light: 0.15;
+  --overlay-dark: 0.85;
+} */
+
 :root.dark {
-  --surface: 0 0% 6%;              /* near-black */
-  --ink: 0 0% 100%;                /* white text */
-  --ink-dim: 220 10% 70%;          /* slate-200-ish */
-  --muted: 220 10% 12%;            /* deep surface */
-  --primary: 222 70% 60%;          /* slightly brighter in dark */
+  --surface: var(--color-surface);
+  --ink: var(--color-ink);
+  --ink-dim: var(--color-ink-dim);
+  --muted: var(--color-muted);
+  --primary: var(--color-primary);
 }
 
 /* Basic elements */
@@ -76,39 +89,51 @@ body {
    ──────────────────────────────────────────────────────────── */
 .card {
   @apply rounded-2xl border shadow-sm;
-  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.7));
+  background: linear-gradient(180deg,
+    hsl(var(--surface) / var(--overlay-light)),
+    hsl(var(--surface) / var(--overlay-dark))
+  );
   border-color: hsl(var(--ink-dim) / 15%);
 }
 :root.dark .card {
-  background: linear-gradient(180deg, rgba(20,20,20,.85), rgba(20,20,20,.7));
+  background: linear-gradient(180deg,
+    hsl(var(--surface) / var(--overlay-dark)),
+    hsl(var(--surface) / calc(var(--overlay-dark) - 0.1))
+  );
   border-color: hsl(var(--ink-dim) / 20%);
 }
 
 /* Glass utilities (localized glassmorphism) */
 .glass {
   border: 1px solid hsl(var(--ink-dim) / 18%);
-  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.6));
+  background: linear-gradient(180deg,
+    hsl(var(--surface) / 0.75),
+    hsl(var(--surface) / 0.6)
+  );
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   border-radius: 1rem;
 }
 :root.dark .glass {
-  background: linear-gradient(180deg, rgba(18,18,18,.75), rgba(18,18,18,.6));
+  background: linear-gradient(180deg,
+    hsl(var(--surface) / 0.75),
+    hsl(var(--surface) / 0.6)
+  );
 }
 
 .glass-soft {
   border: 1px solid hsl(var(--ink-dim) / 12%);
-  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.5));
+  background: linear-gradient(180deg,
+    hsl(var(--surface) / 0.65),
+    hsl(var(--surface) / 0.5)
+  );
   backdrop-filter: blur(8px) saturate(125%);
   -webkit-backdrop-filter: blur(8px) saturate(125%);
   border-radius: .875rem;
 }
-:root.dark .glass-soft {
-  background: linear-gradient(180deg, rgba(16,16,16,.7), rgba(16,16,16,.55));
-}
 
 /* ────────────────────────────────────────────────────────────
-   Buttons (calm, consistent, keyboard-friendly)
+   Buttons
    ──────────────────────────────────────────────────────────── */
 .btn {
   @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition;
@@ -117,10 +142,9 @@ body {
 }
 .btn-primary {
   @apply text-white;
-  background-color: #000;
+  background-color: hsl(var(--primary));
 }
-.btn-primary:hover { background-color: hsl(var(--ink)); }
-:root.dark .btn-primary:hover { background-color: hsl(var(--ink)); }
+.btn-primary:hover { background-color: hsl(var(--primary) / 0.85); }
 
 .btn-secondary {
   @apply text-[hsl(var(--ink))] border;
@@ -132,24 +156,25 @@ body {
 .btn-ghost {
   @apply bg-transparent text-[hsl(var(--ink))];
 }
-.btn-ghost:hover { background-color: hsl(var(--muted)); }
+.btn-ghost:hover { background-color: hsl(var(--muted) / 60%); }
 
-/* Link underline on hover, subtle */
+/* ────────────────────────────────────────────────────────────
+   Links & Section Headers
+   ──────────────────────────────────────────────────────────── */
 .link {
   text-underline-offset: 4px;
   text-decoration-thickness: .08em;
 }
 .link:hover { text-decoration: underline; }
 
-/* ────────────────────────────────────────────────────────────
-   Section Headers
-   ──────────────────────────────────────────────────────────── */
 .section-title {
   @apply text-xs uppercase tracking-wider text-[hsl(var(--ink-dim))];
 }
 
-/* Animated underline for section headers (hover/focus) */
-.section-underline { position: relative; display: inline-block; }
+/* Animated underline for section headers */
+.section-underline {
+  position: relative; display: inline-block;
+}
 .section-underline::after {
   content: '';
   position: absolute; left: 0; bottom: -6px;
@@ -164,7 +189,6 @@ body {
 }
 .section-underline:is(:hover,:focus-visible)::after { width: 100%; }
 
-/* Gradient text (used sparingly) */
 .gradient-text {
   background: linear-gradient(90deg,
     hsl(222 70% 55%),
@@ -176,12 +200,12 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────────
-   Animation Keyframes (unique names; no duplicates)
+   Animation Keyframes
    ──────────────────────────────────────────────────────────── */
 @keyframes floatY {
-  0% { transform: translateY(0px); }
+  0% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  100% { transform: translateY(0); }
 }
 @keyframes bgShift {
   0% { transform: translate3d(0,0,0) scale(1.0); }
@@ -192,15 +216,13 @@ body {
   0%, 100% { transform: scale(1); opacity: .6; }
   50% { transform: scale(1.06); opacity: .9; }
 }
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 @keyframes tipFloat {
-  0% { transform: translateY(0px); }
+  0% { transform: translateY(0); }
   100% { transform: translateY(-18px); }
 }
 @keyframes tip-marquee {
@@ -227,15 +249,13 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────────
-   Subtle 3D & Tilt helpers (CSS-only)
+   Subtle 3D & Tilt helpers
    ──────────────────────────────────────────────────────────── */
 .tilt-3d {
   transform-style: preserve-3d;
   perspective: 1000px;
 }
-.tilt-3d > .tilt-layer {
-  transform: translateZ(var(--z, 20px));
-}
+.tilt-3d > .tilt-layer { transform: translateZ(var(--z, 20px)); }
 
 /* Depth ring (soft inner/highlight) */
 .depth-ring {
@@ -248,21 +268,26 @@ body {
 /* ────────────────────────────────────────────────────────────
    Scrollbar polish (Chromium/Edge/Firefox)
    ──────────────────────────────────────────────────────────── */
-* {
+html, body {
   scrollbar-width: thin;
   scrollbar-color: hsl(var(--ink-dim) / 35%) transparent;
 }
-*::-webkit-scrollbar { height: 10px; width: 10px; }
-*::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  height: 10px; width: 10px;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
   background: hsl(var(--ink-dim) / 35%);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-*::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track { background: transparent; }
 
 /* ────────────────────────────────────────────────────────────
-   View-Transitions polish (when supported)
+   View-Transitions polish
    ──────────────────────────────────────────────────────────── */
 @supports (view-transition-name: root) {
   ::view-transition-old(root),
@@ -273,7 +298,7 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────────
-   Focus ring (consistent across components)
+   Focus ring
    ──────────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid hsl(var(--primary));
@@ -292,7 +317,7 @@ body {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
 }
 
-/* Hide the default tap highlight on mobile for buttons/links */
+/* Hide tap highlight on mobile */
 @media (pointer: coarse) {
   a, button { -webkit-tap-highlight-color: transparent; }
 }

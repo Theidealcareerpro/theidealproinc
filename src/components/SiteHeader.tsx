@@ -1,74 +1,111 @@
-// src/components/SiteHeader.tsx
+// ---------- FILE: src/components/SiteHeader.tsx ----------
 "use client";
 
-import { Menu, ChevronDown } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function SiteHeader() {
-  const [open, setOpen] = useState(false);
-
-  const brands = [
-    { slug: "theidealprogen", label: "theidealprogen", href: "https://grokpro.vercel.app/" },
-    { slug: "theidealprocoach", label: "theidealprocoach", href: "/coach" },
-    { slug: "theidealprolearn", label: "theidealprolearn", href: "/learn" },
-    { slug: "theidealprokids", label: "theidealprokids", href: "/kids" },
-    { slug: "theidealprobiz", label: "theidealprobiz", href: "/biz" },
-    { slug: "theidealprogov", label: "theidealprogov", href: "/gov" },
+  const [isOpen, setIsOpen] = useState(false);
+  const mainNav = [
+    { label: "Ecosystem", href: "/ecosystem" },
+    { label: "Donate", href: "/donate" },
+    { label: "Contact", href: "/contact" },
+    { label: "About Us", href: "/about" },
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-zinc-200/60 bg-white/70 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/60">
-      <div className="container-app h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-xl bg-zinc-900 dark:bg-white" />
-          <span className="text-sm font-semibold tracking-wide">The Ideal Professional Inc.</span>
+    <header
+      data-site-header
+      className="sticky top-0 z-50 w-full bg-white/70 backdrop-blur-md shadow-sm transition-all duration-300"
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+        {/* Brand */}
+        <Link
+          href="/"
+          className="group flex items-center gap-3 font-extrabold tracking-tight"
+          aria-label="Home"
+        >
+          <div className="relative h-8 w-8">
+            <Image
+              src="/icon.png"
+              alt="The Ideal Professional"
+              fill
+              sizes="32px"
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="hidden sm:inline">The Ideal Professional</span>
+          <span className="sm:hidden">TIP</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-2">
-          <Link href="/" className="btn-ghost">Home</Link>
-          <Link href="/ecosystem" className="btn-ghost">Ecosystem</Link>
-          <Link href="/donate" className="btn-ghost">Donate</Link>
-          <Link href="/contact" className="btn-ghost">Contact</Link>
-
-          <div className="relative">
-            <button
-              className="btn-ghost flex items-center gap-1"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-6">
+          {mainNav.map((n) => (
+            <Link
+              key={n.label}
+              href={n.href}
+              className="text-sm text-gray-700 hover:text-black hover:underline underline-offset-4 transition-colors"
             >
-              Brands <ChevronDown className="h-4 w-4 opacity-70" />
-            </button>
-            {open && (
-              <div
-                className="absolute right-0 mt-2 w-64 rounded-xl border border-zinc-200/60 bg-white shadow-lg dark:border-zinc-800 dark:bg-zinc-900"
-                onMouseLeave={() => setOpen(false)}
-              >
-                <ul className="p-2">
-                  {brands.map((b) => (
-                    <li key={b.slug}>
-                      <a
-                        href={b.href}
-                        className="block rounded-lg px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                        target={b.href.startsWith("http") ? "_blank" : undefined}
-                        rel={b.href.startsWith("http") ? "noreferrer" : undefined}
-                      >
-                        {b.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+              {n.label}
+            </Link>
+          ))}
+          <Link
+            href="/ecosystem"
+            className="rounded-md bg-black px-3 py-1.5 text-sm text-white shadow-md transition-transform hover:-translate-y-0.5"
+          >
+            Explore
+          </Link>
         </nav>
 
-        <div className="md:hidden">
-          <button className="btn-ghost" aria-label="Menu">
-            <Menu className="h-5 w-5" />
-          </button>
-        </div>
+        {/* Mobile Menu Button */}
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden rounded-md border px-2 py-1.5 hover:bg-gray-100 transition-colors"
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-white border-t border-gray-200 shadow-sm"
+          >
+            <div className="flex flex-col space-y-3 px-4 py-4">
+              {mainNav.map((n) => (
+                <Link
+                  key={n.label}
+                  href={n.href}
+                  className="text-sm text-gray-800 hover:text-black transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {n.label}
+                </Link>
+              ))}
+              <Link
+                href="/ecosystem"
+                className="rounded-md bg-black px-3 py-2 text-sm text-white text-center shadow hover:bg-gray-900 transition"
+                onClick={() => setIsOpen(false)}
+              >
+                Explore
+              </Link>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

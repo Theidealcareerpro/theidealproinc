@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: 'Ecosystem',
   description:
-    'Explore the interconnected “theideal” brands. Start with one—or compose a stack for end-to-end outcomes.',
+    'Explore the interconnected "theideal" brands. Start with one—or compose a stack for end-to-end outcomes.',
 };
 
 /* ─────────────────────────────────────────────────────────────
@@ -229,42 +229,6 @@ function SmartLink({
 export default function EcosystemPage() {
   return (
     <main className="relative">
-      {/* Sticky anchor QuickNav (glassy chips / no borders) */}
-      <div className="sticky top-16 z-30 bg-white/70 backdrop-blur-md dark:bg-black/60">
-        <div className="mx-auto max-w-7xl px-4">
-          <nav
-            aria-label="Section quick navigation"
-            className="flex flex-wrap items-center gap-2 py-2 text-xs text-[hsl(var(--ink-dim))]"
-          >
-            {[
-              ['Brands', '#brands'],
-              ['KPI', '#kpi'],
-              ['Pathways', '#pathways'],
-              ['Bundles', '#bundles'],
-              ['Flow', '#flow'],
-              ['Testimonials', '#testimonials'],
-              ['Contact', '#cta'],
-            ].map(([t, h]) => (
-              <a
-                key={t}
-                href={h}
-                className="rounded-full px-3 py-1 shadow-[0_8px_22px_-12px_rgba(16,24,40,.28)]
-                           focus:outline-none focus-visible:ring-2 focus-visible:ring-black/15
-                           transition will-change-transform hover:-translate-y-0.5"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.68))',
-                  backdropFilter: 'blur(8px) saturate(140%)',
-                  WebkitBackdropFilter: 'blur(8px) saturate(140%)',
-                }}
-              >
-                {t}
-              </a>
-            ))}
-          </nav>
-        </div>
-        <DividerShadow />
-      </div>
-
       {/* Hero with ambient ribbons (kept left-aligned) */}
       <section className="relative isolate overflow-hidden">
         <div
@@ -281,7 +245,7 @@ export default function EcosystemPage() {
               <div>
                 <p className="section-title">The Ideal Professional.</p>
                 <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
-                  The <span className="text-[hsl(var(--primary))]">“theideal”</span> Ecosystem
+                  The <span className="text-[hsl(var(--primary))]">"theideal"</span> Ecosystem
                 </h1>
                 <p className="mt-3 text-lg text-[hsl(var(--ink-dim))]">
                   Six focused brands—one mission: empower people, strengthen SMEs, and help governments
@@ -640,7 +604,7 @@ export default function EcosystemPage() {
             <div className="sm:text-left text-center">
               <div className="text-base font-semibold">Build with us</div>
               <p className="mt-1 text-sm text-[hsl(var(--ink-dim))]">
-                Whether you’re an individual, an SME, or a government team—we’ll help you move fast, ethically, and well.
+                Whether you're an individual, an SME, or a government team—we'll help you move fast, ethically, and well.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
