@@ -15,7 +15,7 @@ const MediaPage: React.FC = () => {
     { name: 'LinkedIn', href: 'https://linkedin.com/in/yourprofile', icon: 'linkedin', color: '#0077B5' },
     { name: 'YouTube', href: 'https://youtube.com/@yourchannel', icon: 'youtube', color: '#FF0000' },
     { name: 'Spotify', href: 'https://open.spotify.com/show/yourshow', icon: 'spotify', color: '#1DB954' },
-    { name: 'Instagram', href: 'https://instagram.com/theidealprofessional', icon: 'instagram', color: '#E4405F' }
+    { name: 'Instagram', href: 'https://instagram.com/theidealprocareers', icon: 'instagram', color: '#E4405F' }
   ];
 
   const videos = [
